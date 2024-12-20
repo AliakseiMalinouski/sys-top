@@ -1,5 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron')
-const log = require('electron-log')
+import { app, BrowserWindow, Menu } from 'electron'
 
 process.env.NODE_ENV = 'development'
 
