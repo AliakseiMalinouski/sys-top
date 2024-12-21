@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu, Notification } from 'electron'
 
 process.env.NODE_ENV = 'development'
 
@@ -27,12 +27,22 @@ function createMainWindow() {
   mainWindow.loadFile('./app/index.html')
 }
 
-app.on('ready', () => {
-  createMainWindow()
+function createNotification () {
+  new Notification({
+    title: 'Notification',
+    timeoutType: 2000,
+    closeButtonText: 'Close',
+    body: 'Notification body',
+    // icon: '',
+  })
+}
 
-  const mainMenu = Menu.buildFromTemplate(menu)
-  Menu.setApplicationMenu(mainMenu)
-})
+app.on('ready', () => {
+  createMainWindow();
+  createNotification();
+  const mainMenu = Menu.buildFromTemplate(menu);
+  Menu.setApplicationMenu(mainMenu);
+});
 
 const menu = [
   ...(isMac ? [{ role: 'appMenu' }] : []),
